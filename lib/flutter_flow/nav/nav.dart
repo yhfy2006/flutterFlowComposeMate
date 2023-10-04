@@ -79,13 +79,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : AuthPageCopyWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : TheAuthV2Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : AuthPageCopyWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : TheAuthV2Widget(),
         ),
         FFRoute(
           name: 'Settings',
@@ -110,19 +110,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : HomeV2Widget(),
         ),
         FFRoute(
-          name: 'AuthPage',
-          path: '/authPage',
-          builder: (context, params) => AuthPageWidget(),
-        ),
-        FFRoute(
           name: 'profile',
           path: '/profile',
           builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
-          name: 'AuthPageCopy',
-          path: '/authPageCopy',
-          builder: (context, params) => AuthPageCopyWidget(),
+          name: 'TheAuthV2',
+          path: '/theAuthV2',
+          builder: (context, params) => TheAuthV2Widget(),
+        ),
+        FFRoute(
+          name: 'ProfileCollection',
+          path: '/profileCollection',
+          builder: (context, params) => ProfileCollectionWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -289,7 +289,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/authPageCopy';
+            return '/theAuthV2';
           }
           return null;
         },

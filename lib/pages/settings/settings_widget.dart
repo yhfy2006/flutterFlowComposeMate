@@ -32,7 +32,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       await authManager.signOut();
       GoRouter.of(context).clearRedirectLocation();
 
-      context.pushNamedAuth('AuthPage', context.mounted);
+      context.pushNamedAuth('TheAuthV2', context.mounted);
     });
   }
 

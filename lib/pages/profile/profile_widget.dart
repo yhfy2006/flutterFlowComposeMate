@@ -380,7 +380,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                     await authManager.signOut();
                     GoRouter.of(context).clearRedirectLocation();
 
-                    context.goNamedAuth('AuthPageCopy', context.mounted);
+                    context.goNamedAuth('TheAuthV2', context.mounted);
                   },
                   text: 'Log Out',
                   options: FFButtonOptions(
