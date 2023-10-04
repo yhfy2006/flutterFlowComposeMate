@@ -4,3 +4,5 @@ export '/pages/home/home_widget.dart' show HomeWidget;
 export '/pages/home_v2/home_v2_widget.dart' show HomeV2Widget;
 export '/pages/auth_page/auth_page_widget.dart' show AuthPageWidget;
 export '/pages/profile/profile_widget.dart' show ProfileWidget;
+export '/pages/auth_page_copy/auth_page_copy_widget.dart'
+    show AuthPageCopyWidget;

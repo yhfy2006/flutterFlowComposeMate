@@ -79,13 +79,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : AuthPageCopyWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : AuthPageCopyWidget(),
         ),
         FFRoute(
           name: 'Settings',
@@ -118,6 +118,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'profile',
           path: '/profile',
           builder: (context, params) => ProfileWidget(),
+        ),
+        FFRoute(
+          name: 'AuthPageCopy',
+          path: '/authPageCopy',
+          builder: (context, params) => AuthPageCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -284,7 +289,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/authPage';
+            return '/authPageCopy';
           }
           return null;
         },
