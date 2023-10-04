@@ -723,7 +723,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                                     .text,
                                                                 uid: random_data
                                                                     .randomString(
-                                                                  9,
+                                                                  0,
                                                                   9,
                                                                   true,
                                                                   true,
