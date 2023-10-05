@@ -35,8 +35,6 @@ class _HomeV2WidgetState extends State<HomeV2Widget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -45,8 +43,8 @@ class _HomeV2WidgetState extends State<HomeV2Widget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('AddNewFAB pressed ...');
+          onPressed: () async {
+            context.pushNamed('SubNoteWriting');
           },
           backgroundColor: FlutterFlowTheme.of(context).primary,
           elevation: 8.0,

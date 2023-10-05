@@ -1,4 +1,3 @@
-import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,6 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
@@ -24,13 +22,7 @@ void main() async {
 
   await FlutterFlowTheme.initialize();
 
-  final appState = FFAppState(); // Initialize FFAppState
-  await appState.initializePersistedState();
-
-  runApp(ChangeNotifierProvider(
-    create: (context) => appState,
-    child: MyApp(),
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -135,21 +127,14 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Settings': SettingsWidget(),
       'HomeV2': HomeV2Widget(),
+      'Settings': SettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
-    final MediaQueryData queryData = MediaQuery.of(context);
-
     return Scaffold(
-      body: MediaQuery(
-          data: queryData
-              .removeViewInsets(removeBottom: true)
-              .removeViewPadding(removeBottom: true),
-          child: _currentPage ?? tabs[_currentPageName]!),
-      extendBody: true,
-      bottomNavigationBar: FloatingNavbar(
+      body: _currentPage ?? tabs[_currentPageName],
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (i) => setState(() {
           _currentPage = null;
@@ -158,61 +143,25 @@ class _NavBarPageState extends State<NavBarPage> {
         backgroundColor: Colors.white,
         selectedItemColor: FlutterFlowTheme.of(context).primary,
         unselectedItemColor: Color(0x8A000000),
-        selectedBackgroundColor: Color(0x00000000),
-        borderRadius: 10.0,
-        itemBorderRadius: 8.0,
-        margin: EdgeInsetsDirectional.fromSTEB(10.0, 1.0, 10.0, 5.0),
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-        width: double.infinity,
-        elevation: 0.0,
-        items: [
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.settings,
-                  color: currentIndex == 0
-                      ? FlutterFlowTheme.of(context).primary
-                      : Color(0x8A000000),
-                  size: 24.0,
-                ),
-                Text(
-                  'Setting',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 0
-                        ? FlutterFlowTheme.of(context).primary
-                        : Color(0x8A000000),
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              size: 24.0,
             ),
+            label: 'Home',
+            tooltip: '',
           ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.home_outlined,
-                  color: currentIndex == 1
-                      ? FlutterFlowTheme.of(context).primary
-                      : Color(0x8A000000),
-                  size: 24.0,
-                ),
-                Text(
-                  'Home',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 1
-                        ? FlutterFlowTheme.of(context).primary
-                        : Color(0x8A000000),
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings,
+              size: 24.0,
             ),
+            label: 'Setting',
+            tooltip: '',
           )
         ],
       ),

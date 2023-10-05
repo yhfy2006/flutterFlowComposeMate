@@ -95,14 +95,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : SettingsWidget(),
         ),
         FFRoute(
-          name: 'Home',
-          path: '/home',
-          builder: (context, params) => NavBarPage(
-            initialPage: '',
-            page: HomeWidget(),
-          ),
-        ),
-        FFRoute(
           name: 'HomeV2',
           path: '/homeV2',
           builder: (context, params) => params.isEmpty
@@ -123,6 +115,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ProfileCollection',
           path: '/profileCollection',
           builder: (context, params) => ProfileCollectionWidget(),
+        ),
+        FFRoute(
+          name: 'DailyCollection',
+          path: '/dailyCollection',
+          builder: (context, params) => DailyCollectionWidget(),
+        ),
+        FFRoute(
+          name: 'SubNoteWriting',
+          path: '/subNoteWriting',
+          builder: (context, params) => SubNoteWritingWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

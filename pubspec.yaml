@@ -39,7 +39,6 @@ dependencies:
   firebase_performance: 0.9.2+2
   firebase_performance_platform_interface: 0.1.4+2
   firebase_performance_web: 0.1.4+2
-  floating_bottom_navigation_bar: 1.5.2
   flutter_animate: 4.1.1+1
   flutter_cache_manager: 3.3.0
   font_awesome_flutter: 10.1.0
@@ -71,7 +70,6 @@ dependencies:
   sign_in_with_apple_web: 1.0.1
   sqflite: 2.2.6
   stream_transform: 2.1.0
-  table_calendar: 3.0.9
   timeago: 3.2.2
   url_launcher: 6.1.10
   url_launcher_android: 6.0.27
