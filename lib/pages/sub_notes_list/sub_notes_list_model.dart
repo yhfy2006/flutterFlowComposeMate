@@ -1,16 +1,15 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/story_card_widget.dart';
+import '/components/sub_note_display_cell_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'home_v2_widget.dart' show HomeV2Widget;
+import 'sub_notes_list_widget.dart' show SubNotesListWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class HomeV2Model extends FlutterFlowModel<HomeV2Widget> {
+class SubNotesListModel extends FlutterFlowModel<SubNotesListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

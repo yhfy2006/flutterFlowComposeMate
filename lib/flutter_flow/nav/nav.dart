@@ -125,6 +125,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SubNoteWriting',
           path: '/subNoteWriting',
           builder: (context, params) => SubNoteWritingWidget(),
+        ),
+        FFRoute(
+          name: 'SubNotesList',
+          path: '/subNotesList',
+          builder: (context, params) => SubNotesListWidget(
+            storyId: params.getParam('storyId', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

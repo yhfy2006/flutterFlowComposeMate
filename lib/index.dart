@@ -9,3 +9,5 @@ export '/pages/daily_collection/daily_collection_widget.dart'
     show DailyCollectionWidget;
 export '/pages/sub_note_writing/sub_note_writing_widget.dart'
     show SubNoteWritingWidget;
+export '/pages/sub_notes_list/sub_notes_list_widget.dart'
+    show SubNotesListWidget;

@@ -41,12 +41,18 @@ class SubPieceNoteRecord extends FirestoreRecord {
   DateTime? get createdTime => _createdTime;
   bool hasCreatedTime() => _createdTime != null;
 
+  // "noteTime" field.
+  String? _noteTime;
+  String get noteTime => _noteTime ?? '';
+  bool hasNoteTime() => _noteTime != null;
+
   void _initializeFields() {
     _photo = snapshotData['photo'] as String?;
     _text = snapshotData['text'] as String?;
     _user = snapshotData['user'] as DocumentReference?;
     _storyId = snapshotData['storyId'] as String?;
     _createdTime = snapshotData['createdTime'] as DateTime?;
+    _noteTime = snapshotData['noteTime'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -89,6 +95,7 @@ Map<String, dynamic> createSubPieceNoteRecordData({
   DocumentReference? user,
   String? storyId,
   DateTime? createdTime,
+  String? noteTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -97,6 +104,7 @@ Map<String, dynamic> createSubPieceNoteRecordData({
       'user': user,
       'storyId': storyId,
       'createdTime': createdTime,
+      'noteTime': noteTime,
     }.withoutNulls,
   );
 
@@ -113,12 +121,13 @@ class SubPieceNoteRecordDocumentEquality
         e1?.text == e2?.text &&
         e1?.user == e2?.user &&
         e1?.storyId == e2?.storyId &&
-        e1?.createdTime == e2?.createdTime;
+        e1?.createdTime == e2?.createdTime &&
+        e1?.noteTime == e2?.noteTime;
   }
 
   @override
-  int hash(SubPieceNoteRecord? e) => const ListEquality()
-      .hash([e?.photo, e?.text, e?.user, e?.storyId, e?.createdTime]);
+  int hash(SubPieceNoteRecord? e) => const ListEquality().hash(
+      [e?.photo, e?.text, e?.user, e?.storyId, e?.createdTime, e?.noteTime]);
 
   @override
   bool isValidKey(Object? o) => o is SubPieceNoteRecord;
