@@ -29,6 +29,7 @@ Future speechToText() async {
   final SpeechToText speech = SpeechToText();
 
   bool isInitialized = await speech.initialize();
+  final appState = FFAppState();
 
   if (isInitialized) {
     var systemLocale = await speech.systemLocale();
@@ -38,15 +39,15 @@ Future speechToText() async {
     speech.listen(
       onResult: (result) {
         if (!result.finalResult) {
-          FFAppState().update(() {
-            FFAppState().btnTalk = 'listening...';
-            FFAppState().stt = '${result.recognizedWords}';
+          appState.update(() {
+            appState.btnTalk = 'listening...';
+            appState.stt = '${result.recognizedWords}';
           });
         } else {
-          FFAppState().update(() {
+          appState.update(() {
             output = '${result.recognizedWords}';
-            FFAppState().sstSendText = '${result.recognizedWords}';
-            FFAppState().btnTalk = 'Talk';
+            appState.sstSendText = '${result.recognizedWords}';
+            appState.btnTalk = 'Talk';
           });
         }
       },
