@@ -112,16 +112,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TheAuthV2Widget(),
         ),
         FFRoute(
-          name: 'ProfileCollection',
-          path: '/profileCollection',
-          builder: (context, params) => ProfileCollectionWidget(),
-        ),
-        FFRoute(
-          name: 'DailyCollection',
-          path: '/dailyCollection',
-          builder: (context, params) => DailyCollectionWidget(),
-        ),
-        FFRoute(
           name: 'SubNoteWriting',
           path: '/subNoteWriting',
           builder: (context, params) => SubNoteWritingWidget(),
@@ -131,6 +121,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/subNotesList',
           builder: (context, params) => SubNotesListWidget(
             storyId: params.getParam('storyId', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'StoryDetail',
+          path: '/storyDetail',
+          asyncParams: {
+            'storyDoc': getDoc(['DailyStory'], DailyStoryRecord.fromSnapshot),
+          },
+          builder: (context, params) => StoryDetailWidget(
+            storyDoc: params.getParam('storyDoc', ParamType.Document),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

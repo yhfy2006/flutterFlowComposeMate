@@ -118,10 +118,34 @@ class _HomeV2WidgetState extends State<HomeV2Widget> {
                   itemBuilder: (context, listViewIndex) {
                     final listViewDailyStoryRecord =
                         listViewDailyStoryRecordList[listViewIndex];
-                    return StoryCardWidget(
-                      key: Key(
-                          'Key6r3_${listViewIndex}_of_${listViewDailyStoryRecordList.length}'),
-                      story: listViewDailyStoryRecord,
+                    return InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(
+                          'StoryDetail',
+                          queryParameters: {
+                            'storyDoc': serializeParam(
+                              listViewDailyStoryRecord,
+                              ParamType.Document,
+                            ),
+                          }.withoutNulls,
+                          extra: <String, dynamic>{
+                            'storyDoc': listViewDailyStoryRecord,
+                            kTransitionInfoKey: TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.bottomToTop,
+                            ),
+                          },
+                        );
+                      },
+                      child: StoryCardWidget(
+                        key: Key(
+                            'Key6r3_${listViewIndex}_of_${listViewDailyStoryRecordList.length}'),
+                        story: listViewDailyStoryRecord,
+                      ),
                     );
                   },
                 );

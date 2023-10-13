@@ -1,12 +1,13 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'daily_collection_widget.dart' show DailyCollectionWidget;
+import 'story_detail_widget.dart' show StoryDetailWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class DailyCollectionModel extends FlutterFlowModel<DailyCollectionWidget> {
+class StoryDetailModel extends FlutterFlowModel<StoryDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
