@@ -101,6 +101,8 @@ class _SubNoteWritingWidgetState extends State<SubNoteWritingWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return StreamBuilder<List<DailyStoryRecord>>(
       stream: queryDailyStoryRecord(
         queryBuilder: (dailyStoryRecord) => dailyStoryRecord.where(

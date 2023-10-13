@@ -38,6 +38,8 @@ class _HomeListHeaderViewWidgetState extends State<HomeListHeaderViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
       child: Container(
