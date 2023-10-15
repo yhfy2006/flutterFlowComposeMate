@@ -115,11 +115,35 @@ class _SubNotesListWidgetState extends State<SubNotesListWidget> {
                 itemBuilder: (context, listViewIndex) {
                   final listViewSubPieceNoteRecord =
                       listViewSubPieceNoteRecordList[listViewIndex];
-                  return SubNoteDisplayCellWidget(
-                    key: Key(
-                        'Keyrqa_${listViewIndex}_of_${listViewSubPieceNoteRecordList.length}'),
-                    subNoteDoc: listViewSubPieceNoteRecord,
-                    subNoteRef: listViewSubPieceNoteRecord.reference,
+                  return InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed(
+                        'SubNoteWriting',
+                        queryParameters: {
+                          'subNote': serializeParam(
+                            listViewSubPieceNoteRecord,
+                            ParamType.Document,
+                          ),
+                        }.withoutNulls,
+                        extra: <String, dynamic>{
+                          'subNote': listViewSubPieceNoteRecord,
+                          kTransitionInfoKey: TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.bottomToTop,
+                          ),
+                        },
+                      );
+                    },
+                    child: SubNoteDisplayCellWidget(
+                      key: Key(
+                          'Keyrqa_${listViewIndex}_of_${listViewSubPieceNoteRecordList.length}'),
+                      subNoteDoc: listViewSubPieceNoteRecord,
+                      subNoteRef: listViewSubPieceNoteRecord.reference,
+                    ),
                   );
                 },
               );

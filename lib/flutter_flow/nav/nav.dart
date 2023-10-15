@@ -114,7 +114,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'SubNoteWriting',
           path: '/subNoteWriting',
-          builder: (context, params) => SubNoteWritingWidget(),
+          asyncParams: {
+            'subNote':
+                getDoc(['SubPieceNote'], SubPieceNoteRecord.fromSnapshot),
+          },
+          builder: (context, params) => SubNoteWritingWidget(
+            subNote: params.getParam('subNote', ParamType.Document),
+          ),
         ),
         FFRoute(
           name: 'SubNotesList',

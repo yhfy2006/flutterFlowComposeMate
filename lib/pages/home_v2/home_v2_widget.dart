@@ -4,6 +4,9 @@ import '/components/story_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,8 +51,122 @@ class _HomeV2WidgetState extends State<HomeV2Widget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         floatingActionButton: FloatingActionButton(
+          key: ValueKey('AddNewFAB_sf2x'),
           onPressed: () async {
-            context.pushNamed('SubNoteWriting');
+            _model.currentStoryDoc = await queryDailyStoryRecordOnce(
+              queryBuilder: (dailyStoryRecord) => dailyStoryRecord.where(
+                'dateSegment',
+                isEqualTo: functions.getCurrentDateSegment(),
+              ),
+              singleRecord: true,
+            ).then((s) => s.firstOrNull);
+            if (_model.currentStoryDoc != null) {
+              _model.currentDayStory = _model.currentStoryDoc;
+            } else {
+              var dailyStoryRecordReference = DailyStoryRecord.collection.doc();
+              await dailyStoryRecordReference.set({
+                ...createDailyStoryRecordData(
+                  aiProcessed: false,
+                  dateSegment: functions.getCurrentDateSegment(),
+                  numberOfSubNotes: 0,
+                  user: currentUserReference,
+                  userId: currentUserUid,
+                  title: '',
+                ),
+                ...mapToFirestore(
+                  {
+                    'lastUpdatedAt': FieldValue.serverTimestamp(),
+                  },
+                ),
+              });
+              _model.newDailyStory = DailyStoryRecord.getDocumentFromData({
+                ...createDailyStoryRecordData(
+                  aiProcessed: false,
+                  dateSegment: functions.getCurrentDateSegment(),
+                  numberOfSubNotes: 0,
+                  user: currentUserReference,
+                  userId: currentUserUid,
+                  title: '',
+                ),
+                ...mapToFirestore(
+                  {
+                    'lastUpdatedAt': DateTime.now(),
+                  },
+                ),
+              }, dailyStoryRecordReference);
+
+              await currentUserReference!.update({
+                ...mapToFirestore(
+                  {
+                    'numberOfStories': FieldValue.increment(1),
+                  },
+                ),
+              });
+              _model.currentDayStory = _model.newDailyStory;
+            }
+
+            var subPieceNoteRecordReference =
+                SubPieceNoteRecord.collection.doc();
+            await subPieceNoteRecordReference.set({
+              ...createSubPieceNoteRecordData(
+                user: currentUserReference,
+                storyId: _model.currentDayStory?.reference.id,
+                noteTime: dateTimeFormat('y/M/d H:mm', getCurrentTimestamp),
+              ),
+              ...mapToFirestore(
+                {
+                  'createdTime': FieldValue.serverTimestamp(),
+                  'lastUpdatedAt': FieldValue.serverTimestamp(),
+                },
+              ),
+            });
+            _model.subNoteOutput = SubPieceNoteRecord.getDocumentFromData({
+              ...createSubPieceNoteRecordData(
+                user: currentUserReference,
+                storyId: _model.currentDayStory?.reference.id,
+                noteTime: dateTimeFormat('y/M/d H:mm', getCurrentTimestamp),
+              ),
+              ...mapToFirestore(
+                {
+                  'createdTime': DateTime.now(),
+                  'lastUpdatedAt': DateTime.now(),
+                },
+              ),
+            }, subPieceNoteRecordReference);
+
+            await currentUserReference!.update({
+              ...mapToFirestore(
+                {
+                  'numberOfSubNotes': FieldValue.increment(1),
+                },
+              ),
+            });
+
+            await _model.currentDayStory!.reference.update({
+              ...createDailyStoryRecordData(
+                lastUpdatedAt: getCurrentTimestamp,
+              ),
+              ...mapToFirestore(
+                {
+                  'numberOfSubNotes': FieldValue.increment(1),
+                },
+              ),
+            });
+
+            context.pushNamed(
+              'SubNoteWriting',
+              queryParameters: {
+                'subNote': serializeParam(
+                  _model.subNoteOutput,
+                  ParamType.Document,
+                ),
+              }.withoutNulls,
+              extra: <String, dynamic>{
+                'subNote': _model.subNoteOutput,
+              },
+            );
+
+            setState(() {});
           },
           backgroundColor: FlutterFlowTheme.of(context).primary,
           elevation: 8.0,
