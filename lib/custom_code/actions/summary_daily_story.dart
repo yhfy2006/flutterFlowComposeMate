@@ -13,8 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 
 Future<void> summaryDailyStory(String storyId) async {
-  final HttpsCallable callable =
-      FirebaseFunctions.instance.httpsCallable('on_date_segment_gpt_summary');
+  final HttpsCallable callable = FirebaseFunctions.instance
+      .httpsCallable('on_date_segment_gpt_summary_on_call');
   try {
     final result = await callable.call({'storyId': storyId});
     print(result.data);

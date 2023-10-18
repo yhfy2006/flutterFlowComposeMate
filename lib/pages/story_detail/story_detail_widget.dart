@@ -85,30 +85,32 @@ class _StoryDetailWidgetState extends State<StoryDetailWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(13.0, 13.0, 13.0, 13.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 180.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                  child: Visibility(
-                    visible: widget.storyDoc!.images.length > 0,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        'https://picsum.photos/seed/199/600',
-                        width: 406.0,
-                        height: 192.0,
-                        fit: BoxFit.cover,
+              if (widget.storyDoc?.images?.length != 0)
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: widget.storyDoc?.images?.length != 0 ? 180.0 : 0.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    child: Visibility(
+                      visible: widget.storyDoc!.images.length > 0,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          'https://picsum.photos/seed/199/600',
+                          width: 406.0,
+                          height: 192.0,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 13.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                 child: Text(
                   valueOrDefault<String>(
                     widget.storyDoc?.title,
@@ -125,7 +127,7 @@ class _StoryDetailWidgetState extends State<StoryDetailWidget> {
                 alignment: AlignmentDirectional(-1.00, 0.00),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(13.0, 20.0, 13.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                   child: Text(
                     valueOrDefault<String>(
                       widget.storyDoc?.body,
