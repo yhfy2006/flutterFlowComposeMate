@@ -8,6 +8,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,15 @@ class _HomeV2WidgetState extends State<HomeV2Widget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -159,6 +169,10 @@ class _HomeV2WidgetState extends State<HomeV2Widget> {
                 'subNote': serializeParam(
                   _model.subNoteOutput,
                   ParamType.Document,
+                ),
+                'addNew': serializeParam(
+                  true,
+                  ParamType.bool,
                 ),
               }.withoutNulls,
               extra: <String, dynamic>{

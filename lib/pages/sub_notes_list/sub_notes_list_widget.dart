@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'sub_notes_list_model.dart';
@@ -42,6 +43,15 @@ class _SubNotesListWidgetState extends State<SubNotesListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -127,6 +137,10 @@ class _SubNotesListWidgetState extends State<SubNotesListWidget> {
                           'subNote': serializeParam(
                             listViewSubPieceNoteRecord,
                             ParamType.Document,
+                          ),
+                          'addNew': serializeParam(
+                            false,
+                            ParamType.bool,
                           ),
                         }.withoutNulls,
                         extra: <String, dynamic>{

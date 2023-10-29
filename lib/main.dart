@@ -135,7 +135,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomeV2': HomeV2Widget(),
-      'Settings': SettingsWidget(),
+      'profile': ProfileWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -164,10 +164,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.settings,
+              Icons.person_outline,
               size: 24.0,
             ),
-            label: 'Setting',
+            label: 'Me',
             tooltip: '',
           )
         ],

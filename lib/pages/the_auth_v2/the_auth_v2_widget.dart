@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -109,9 +110,13 @@ class _TheAuthV2WidgetState extends State<TheAuthV2Widget>
       initialIndex: 0,
     )..addListener(() => setState(() {}));
     _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressFocusNode ??= FocusNode();
     _model.passwordController ??= TextEditingController();
+    _model.passwordFocusNode ??= FocusNode();
     _model.emailAddressCreateController ??= TextEditingController();
+    _model.emailAddressCreateFocusNode ??= FocusNode();
     _model.passwordCreateController ??= TextEditingController();
+    _model.passwordCreateFocusNode ??= FocusNode();
   }
 
   @override
@@ -123,6 +128,15 @@ class _TheAuthV2WidgetState extends State<TheAuthV2Widget>
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -292,6 +306,8 @@ class _TheAuthV2WidgetState extends State<TheAuthV2Widget>
                                                   child: TextFormField(
                                                     controller: _model
                                                         .emailAddressController,
+                                                    focusNode: _model
+                                                        .emailAddressFocusNode,
                                                     textCapitalization:
                                                         TextCapitalization
                                                             .sentences,
@@ -375,6 +391,8 @@ class _TheAuthV2WidgetState extends State<TheAuthV2Widget>
                                                   child: TextFormField(
                                                     controller: _model
                                                         .passwordController,
+                                                    focusNode: _model
+                                                        .passwordFocusNode,
                                                     textCapitalization:
                                                         TextCapitalization
                                                             .sentences,
@@ -923,6 +941,8 @@ class _TheAuthV2WidgetState extends State<TheAuthV2Widget>
                                                   child: TextFormField(
                                                     controller: _model
                                                         .emailAddressCreateController,
+                                                    focusNode: _model
+                                                        .emailAddressCreateFocusNode,
                                                     textCapitalization:
                                                         TextCapitalization
                                                             .sentences,
@@ -1006,6 +1026,8 @@ class _TheAuthV2WidgetState extends State<TheAuthV2Widget>
                                                   child: TextFormField(
                                                     controller: _model
                                                         .passwordCreateController,
+                                                    focusNode: _model
+                                                        .passwordCreateFocusNode,
                                                     textCapitalization:
                                                         TextCapitalization
                                                             .sentences,

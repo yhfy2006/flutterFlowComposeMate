@@ -9,6 +9,7 @@ import '/flutter_flow/random_data_util.dart' as random_data;
 import 'the_auth_v2_widget.dart' show TheAuthV2Widget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,17 +25,21 @@ class TheAuthV2Model extends FlutterFlowModel<TheAuthV2Widget> {
       tabBarController != null ? tabBarController!.index : 0;
 
   // State field(s) for emailAddress widget.
+  FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
   // State field(s) for password widget.
+  FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
   // State field(s) for emailAddress_Create widget.
+  FocusNode? emailAddressCreateFocusNode;
   TextEditingController? emailAddressCreateController;
   String? Function(BuildContext, String?)?
       emailAddressCreateControllerValidator;
   // State field(s) for password_create widget.
+  FocusNode? passwordCreateFocusNode;
   TextEditingController? passwordCreateController;
   late bool passwordCreateVisibility;
   String? Function(BuildContext, String?)? passwordCreateControllerValidator;
@@ -49,9 +54,16 @@ class TheAuthV2Model extends FlutterFlowModel<TheAuthV2Widget> {
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
+    emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
+
+    passwordFocusNode?.dispose();
     passwordController?.dispose();
+
+    emailAddressCreateFocusNode?.dispose();
     emailAddressCreateController?.dispose();
+
+    passwordCreateFocusNode?.dispose();
     passwordCreateController?.dispose();
   }
 

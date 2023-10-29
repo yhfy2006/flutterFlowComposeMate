@@ -8,3 +8,4 @@ export '/pages/sub_note_writing/sub_note_writing_widget.dart'
 export '/pages/sub_notes_list/sub_notes_list_widget.dart'
     show SubNotesListWidget;
 export '/pages/story_detail/story_detail_widget.dart' show StoryDetailWidget;
+export '/pages/edit_profile/edit_profile_widget.dart' show EditProfileWidget;

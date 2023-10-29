@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
-import '../../auth/base_auth_user_provider.dart';
+import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -90,9 +90,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Settings',
           path: '/settings',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Settings')
-              : SettingsWidget(),
+          builder: (context, params) => SettingsWidget(),
         ),
         FFRoute(
           name: 'HomeV2',
@@ -104,7 +102,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'profile',
           path: '/profile',
-          builder: (context, params) => ProfileWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'profile')
+              : ProfileWidget(),
         ),
         FFRoute(
           name: 'TheAuthV2',
@@ -120,6 +120,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           },
           builder: (context, params) => SubNoteWritingWidget(
             subNote: params.getParam('subNote', ParamType.Document),
+            addNew: params.getParam('addNew', ParamType.bool),
           ),
         ),
         FFRoute(
@@ -138,6 +139,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => StoryDetailWidget(
             storyDoc: params.getParam('storyDoc', ParamType.Document),
           ),
+        ),
+        FFRoute(
+          name: 'EditProfile',
+          path: '/editProfile',
+          builder: (context, params) => EditProfileWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
