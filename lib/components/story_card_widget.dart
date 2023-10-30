@@ -106,14 +106,13 @@ class _StoryCardWidgetState extends State<StoryCardWidget> {
                             '\"\"',
                           ),
                           maxLines: 1,
-                          style: FlutterFlowTheme.of(context)
-                              .titleLarge
-                              .override(
-                                fontFamily: 'Outfit',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.w500,
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).titleLarge.override(
+                                    fontFamily: 'Outfit',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                         )),
                       ],
                     ),
@@ -129,13 +128,15 @@ class _StoryCardWidgetState extends State<StoryCardWidget> {
                             widget.story?.dateSegment,
                             '\"\"',
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).bodySmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodySmall
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w500,
+                              ),
                         ),
                       ],
                     ),

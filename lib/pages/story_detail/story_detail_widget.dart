@@ -80,7 +80,7 @@ class _StoryDetailWidgetState extends State<StoryDetailWidget> {
           title: Text(
             'My Story',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Roboto',
                   color: Colors.white,
                   fontSize: 22.0,
                 ),
@@ -128,7 +128,7 @@ class _StoryDetailWidgetState extends State<StoryDetailWidget> {
                   ),
                   maxLines: 2,
                   style: FlutterFlowTheme.of(context).titleLarge.override(
-                        fontFamily: 'Outfit',
+                        fontFamily: 'Roboto',
                         fontSize: 25.0,
                       ),
                 ),
