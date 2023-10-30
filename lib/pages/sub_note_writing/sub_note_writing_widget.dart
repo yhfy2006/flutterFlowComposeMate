@@ -1,3 +1,5 @@
+import 'package:compose_mate/custom_classes/speech_to_text.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/speech_to_text_mic_component_widget.dart';
@@ -34,12 +36,15 @@ class _SubNoteWritingWidgetState extends State<SubNoteWritingWidget> {
   late SubNoteWritingModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
+  late Stt sttObj;
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => SubNoteWritingModel());
-
+    _model.noteFieldController ??=
+        TextEditingController(text: widget.subNote?.text);
+    _model.noteFieldFocusNode ??= FocusNode();
+    sttObj = Stt(textEditingController: _model.noteFieldController!);
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (widget.addNew) {
@@ -61,7 +66,8 @@ class _SubNoteWritingWidgetState extends State<SubNoteWritingWidget> {
           },
         ).then((value) => safeSetState(() {}));
       } else {
-        await actions.speechToText();
+        // await actions.speechToText();
+        await this.sttObj.start(() => safeSetState(() {}));
         await showModalBottomSheet(
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
@@ -81,11 +87,6 @@ class _SubNoteWritingWidgetState extends State<SubNoteWritingWidget> {
         ).then((value) => safeSetState(() {}));
       }
     });
-
-    _model.noteFieldController ??= TextEditingController(
-        text:
-            '${widget.subNote?.text}${FFAppState().sstSendText != null && FFAppState().sstSendText != '' ? FFAppState().sstSendText : FFAppState().stt}');
-    _model.noteFieldFocusNode ??= FocusNode();
   }
 
   @override
