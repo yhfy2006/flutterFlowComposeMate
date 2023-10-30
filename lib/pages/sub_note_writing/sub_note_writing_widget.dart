@@ -61,6 +61,7 @@ class _SubNoteWritingWidgetState extends State<SubNoteWritingWidget> {
           },
         ).then((value) => safeSetState(() {}));
       } else {
+        await actions.speechToText();
         await showModalBottomSheet(
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
@@ -78,8 +79,6 @@ class _SubNoteWritingWidgetState extends State<SubNoteWritingWidget> {
             );
           },
         ).then((value) => safeSetState(() {}));
-
-        await actions.speechToText();
       }
     });
 
