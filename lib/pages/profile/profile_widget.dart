@@ -152,6 +152,65 @@ class _ProfileWidgetState extends State<ProfileWidget>
                 ],
               ),
             ),
+            Container(
+              height: 200.0,
+              child: Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 140.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: CachedNetworkImageProvider(
+                          'https://images.unsplash.com/photo-1434394354979-a235cd36269d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fG1vdW50YWluc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(-1.00, 1.00),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 16.0),
+                      child: Container(
+                        width: 90.0,
+                        height: 90.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).accent2,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).secondary,
+                            width: 2.0,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              4.0, 4.0, 4.0, 4.0),
+                          child: AuthUserStreamWidget(
+                            builder: (context) => ClipRRect(
+                              borderRadius: BorderRadius.circular(50.0),
+                              child: CachedNetworkImage(
+                                fadeInDuration: Duration(milliseconds: 500),
+                                fadeOutDuration: Duration(milliseconds: 500),
+                                imageUrl: valueOrDefault<String>(
+                                  currentUserPhoto,
+                                  'https://firebasestorage.googleapis.com/v0/b/composemate.appspot.com/o/default%2Fdefault_profile.png?alt=media&token=aee89849-a0d8-4960-b30c-90dfbbeed057&_gl=1*h7x76w*_ga*ODYyMzc4NjM5LjE2ODAxMzkxNzI.*_ga_CW55HF8NVT*MTY5ODI4MzgzNy4zMy4xLjE2OTgyODQzNDMuNDcuMC4w',
+                                ),
+                                width: 100.0,
+                                height: 100.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
               child: AuthUserStreamWidget(

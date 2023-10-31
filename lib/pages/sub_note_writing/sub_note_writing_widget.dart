@@ -135,7 +135,7 @@ class _SubNoteWritingWidgetState extends State<SubNoteWritingWidget> {
           title: Text(
             dateTimeFormat('MMMEd', getCurrentTimestamp),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Urbanist',
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontSize: 22.0,
                 ),

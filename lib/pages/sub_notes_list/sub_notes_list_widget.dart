@@ -81,7 +81,7 @@ class _SubNotesListWidgetState extends State<SubNotesListWidget> {
           title: Text(
             'SubNotes',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Urbanist',
                   color: Colors.white,
                   fontSize: 22.0,
                 ),

@@ -225,15 +225,15 @@ class _StoryCardWidgetState extends State<StoryCardWidget> {
                                     0.0, 0.0, 0.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 10.0, 0.0),
-                                color: Color(0x004B39EF),
+                                color: Color(0x00F0F0F0),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w300,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                     ),
-                                elevation: 3.0,
+                                elevation: 0.0,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,

@@ -79,13 +79,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : TheAuthV2Widget(),
+          appStateNotifier.loggedIn ? HomeV2Widget() : TheAuthV2Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : TheAuthV2Widget(),
+              appStateNotifier.loggedIn ? HomeV2Widget() : TheAuthV2Widget(),
         ),
         FFRoute(
           name: 'Settings',
@@ -95,16 +95,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomeV2',
           path: '/homeV2',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'HomeV2')
-              : HomeV2Widget(),
+          builder: (context, params) => HomeV2Widget(),
         ),
         FFRoute(
           name: 'profile',
           path: '/profile',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'profile')
-              : ProfileWidget(),
+          builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
           name: 'TheAuthV2',

@@ -187,51 +187,51 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Roboto';
+  String get displayLargeFamily => 'Urbanist';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Roboto',
+        'Urbanist',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'Roboto';
+  String get displayMediumFamily => 'Urbanist';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Roboto',
+        'Urbanist',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'Roboto';
+  String get displaySmallFamily => 'Urbanist';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Roboto',
+        'Urbanist',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Roboto';
+  String get headlineLargeFamily => 'Urbanist';
   TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Roboto',
+        'Urbanist',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Roboto';
+  String get headlineMediumFamily => 'Urbanist';
   TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Roboto',
+        'Urbanist',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'Roboto';
+  String get headlineSmallFamily => 'Urbanist';
   TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Roboto',
+        'Urbanist',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Roboto';
+  String get titleLargeFamily => 'Urbanist';
   TextStyle get titleLarge => GoogleFonts.getFont(
-        'Roboto',
+        'Urbanist',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,

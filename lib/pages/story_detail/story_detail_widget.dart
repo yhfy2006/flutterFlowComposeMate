@@ -61,7 +61,7 @@ class _StoryDetailWidgetState extends State<StoryDetailWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -77,17 +77,9 @@ class _StoryDetailWidgetState extends State<StoryDetailWidget> {
               context.pop();
             },
           ),
-          title: Text(
-            'My Story',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Roboto',
-                  color: Colors.white,
-                  fontSize: 22.0,
-                ),
-          ),
           actions: [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
@@ -128,7 +120,7 @@ class _StoryDetailWidgetState extends State<StoryDetailWidget> {
                   ),
                   maxLines: 2,
                   style: FlutterFlowTheme.of(context).titleLarge.override(
-                        fontFamily: 'Roboto',
+                        fontFamily: 'Urbanist',
                         fontSize: 25.0,
                       ),
                 ),
